@@ -1,4 +1,5 @@
 # FurniVision
+PUSL3122 Group 53 3D Room Designer Website
 
 FurniVision is a 3D room planning and interior design application. It allows users to create floor plans, furnish rooms using a 3D catalog, and visualize interior design concepts in real-time.
 
@@ -33,7 +34,7 @@ FurniVision is a 3D room planning and interior design application. It allows use
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/FurniVision.git
+   git clone https://github.com/vhmkalinga/FurniVision.git
    cd FurniVision
    ```
 
