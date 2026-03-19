@@ -526,27 +526,132 @@ export default function RoomDesigner() {
     return (
         <div style={{ minHeight: 'calc(100vh - 64px)', backgroundColor: 'var(--bg-primary)', fontFamily: 'system-ui, sans-serif', color: 'var(--text-primary)' }}>
 
-            {/* Top Section Tabs */}
-            <div style={{ padding: '1.5rem 2rem 0 2rem', backgroundColor: 'var(--bg-card)', borderBottom: '1px solid var(--border-color)' }}>
-                <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: '2.5rem', marginTop: '1rem' }}>
-                        <h1 style={{ fontSize: '2.5rem', fontWeight: '900', color: 'var(--text-primary)', margin: '0 0 0.5rem 0', letterSpacing: '-0.02em' }}>Room Designer</h1>
-                        <p style={{ fontSize: '1rem', color: 'var(--text-muted)', margin: '0 0 1.5rem 0' }}>Create, explore, and manage your interior designs</p>
-                        
-                        <div style={{ display: 'flex', gap: '0.25rem', backgroundColor: 'var(--bg-secondary)', padding: '0.375rem', borderRadius: '2rem', width: 'fit-content' }}>
-                            {sections.map(s => {
-                                const active = activeSection === s.id;
-                                return (
-                                    <button key={s.id} onClick={() => setActiveSection(s.id)} style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', fontWeight: '700', fontSize: '0.85rem', border: 'none', cursor: 'pointer', backgroundColor: 'transparent', color: active ? (dark ? '#fff' : '#000') : 'var(--text-muted)', transition: 'color 0.2s', zIndex: 1, borderRadius: '1.5rem' }}>
-                                        {active && (
-                                            <motion.div layoutId="activeTabBadge" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'var(--bg-card)', borderRadius: '1.5rem', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', zIndex: -1 }} transition={{ type: 'spring', stiffness: 500, damping: 30 }} />
-                                        )}
-                                        <s.icon style={{ width: '1rem', height: '1rem' }} /> {s.label}
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    </div>
+            {/* Hero Banner Header */}
+            <div style={{ position: 'relative', width: '100%', height: '340px', overflow: 'hidden' }}>
+                {/* Background Image */}
+                <img
+                    src="/saved_designs_banner.png"
+                    alt="Interior design banner"
+                    style={{
+                        position: 'absolute', inset: 0,
+                        width: '100%', height: '100%',
+                        objectFit: 'cover', objectPosition: 'center 35%',
+                    }}
+                />
+                {/* Gradient Overlay */}
+                <div style={{
+                    position: 'absolute', inset: 0,
+                    background: 'linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.72) 100%)',
+                }} />
+
+                {/* Centered Text & Tabs */}
+                <div style={{
+                    position: 'absolute', inset: 0,
+                    display: 'flex', flexDirection: 'column',
+                    alignItems: 'center', justifyContent: 'center',
+                    textAlign: 'center', padding: '0 2rem',
+                    gap: '0',
+                }}>
+                    <motion.span
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        style={{
+                            display: 'inline-block',
+                            padding: '0.3rem 1rem',
+                            borderRadius: '9999px',
+                            backgroundColor: 'rgba(212,246,112,0.92)',
+                            color: '#000',
+                            fontSize: '0.68rem',
+                            fontWeight: '800',
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase',
+                            marginBottom: '0.85rem',
+                        }}
+                    >
+                        ✦ FurniVision Studio
+                    </motion.span>
+
+                    <motion.h1
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.55, delay: 0.08 }}
+                        style={{
+                            fontSize: '3rem', fontWeight: '900',
+                            color: '#fff', margin: '0 0 0.6rem 0',
+                            letterSpacing: '-0.03em', lineHeight: 1.15,
+                            textShadow: '0 2px 20px rgba(0,0,0,0.4)',
+                        }}
+                    >
+                        Room Designer
+                    </motion.h1>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.55, delay: 0.15 }}
+                        style={{
+                            fontSize: '1.05rem', color: 'rgba(255,255,255,0.82)',
+                            margin: '0 0 2rem 0', fontWeight: '500',
+                            maxWidth: '480px', lineHeight: 1.6,
+                            textShadow: '0 1px 8px rgba(0,0,0,0.3)',
+                        }}
+                    >
+                        Create, explore, and manage your interior designs
+                    </motion.p>
+
+                    {/* Tab Switcher */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.22 }}
+                        style={{
+                            display: 'flex', gap: '0.25rem',
+                            backgroundColor: 'rgba(255,255,255,0.12)',
+                            backdropFilter: 'blur(16px)',
+                            WebkitBackdropFilter: 'blur(16px)',
+                            padding: '0.375rem',
+                            borderRadius: '2rem',
+                            border: '1px solid rgba(255,255,255,0.2)',
+                            width: 'fit-content',
+                        }}
+                    >
+                        {sections.map(s => {
+                            const active = activeSection === s.id;
+                            return (
+                                <button
+                                    key={s.id}
+                                    onClick={() => setActiveSection(s.id)}
+                                    style={{
+                                        position: 'relative',
+                                        display: 'flex', alignItems: 'center', gap: '0.5rem',
+                                        padding: '0.65rem 1.4rem',
+                                        fontWeight: '700', fontSize: '0.85rem',
+                                        border: 'none', cursor: 'pointer',
+                                        backgroundColor: 'transparent',
+                                        color: active ? '#000' : 'rgba(255,255,255,0.85)',
+                                        transition: 'color 0.2s',
+                                        zIndex: 1, borderRadius: '1.5rem',
+                                    }}
+                                >
+                                    {active && (
+                                        <motion.div
+                                            layoutId="activeTabBadge"
+                                            style={{
+                                                position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+                                                backgroundColor: '#fff',
+                                                borderRadius: '1.5rem',
+                                                boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
+                                                zIndex: -1,
+                                            }}
+                                            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                                        />
+                                    )}
+                                    <s.icon style={{ width: '1rem', height: '1rem' }} /> {s.label}
+                                </button>
+                            );
+                        })}
+                    </motion.div>
                 </div>
             </div>
 
@@ -926,6 +1031,8 @@ export default function RoomDesigner() {
                         <h2 style={{ fontSize: '1.75rem', fontWeight: '900', color: 'var(--text-primary)', margin: '0 0 0.5rem 0' }}>Saved Designs</h2>
                         <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', margin: 0 }}>Your personal collection of room designs</p>
                     </div>
+
+
 
                     {!user ? (
                         <div style={{ textAlign: 'center', padding: '4rem 0', backgroundColor: 'var(--bg-card)', borderRadius: '2rem', border: '1px solid var(--border-color)' }}>
