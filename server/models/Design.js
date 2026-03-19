@@ -29,7 +29,7 @@ const designSchema = new mongoose.Schema({
     roomWidth: { type: Number, required: true, default: 5 },
     roomLength: { type: Number, required: true, default: 5 },
     roomHeight: { type: Number, default: 3 },
-    roomShape: { type: String, enum: ['rectangular', 'l-shaped', 'square'], default: 'rectangular' },
+    roomShape: { type: String, default: 'rectangular' },
     wallColor: { type: String, default: '#F5F5DC' },
     floorColor: { type: String, default: '#DEB887' },
     furniture: [furnitureItemSchema],

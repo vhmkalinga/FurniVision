@@ -13,6 +13,7 @@ exports.getDesigns = async (req, res) => {
             .sort({ updatedAt: -1 });
         res.json({ designs });
     } catch (error) {
+        console.error('[getDesigns]', error);
         res.status(500).json({ message: error.message });
     }
 };
@@ -25,6 +26,7 @@ exports.getTemplates = async (req, res) => {
             .sort({ createdAt: -1 });
         res.json({ designs });
     } catch (error) {
+        console.error('[getTemplates]', error);
         res.status(500).json({ message: error.message });
     }
 };
@@ -46,6 +48,7 @@ exports.getDesignById = async (req, res) => {
 
         res.json({ design });
     } catch (error) {
+        console.error('[getDesignById]', error);
         res.status(500).json({ message: error.message });
     }
 };
@@ -56,6 +59,8 @@ exports.createDesign = async (req, res) => {
         const design = await Design.create({ ...req.body, userId: req.user._id });
         res.status(201).json({ design });
     } catch (error) {
+        console.error('[createDesign] Error:', error.message);
+        console.error('[createDesign] Body received:', JSON.stringify(req.body, null, 2));
         res.status(500).json({ message: error.message });
     }
 };
@@ -78,6 +83,7 @@ exports.updateDesign = async (req, res) => {
         await design.save();
         res.json({ design });
     } catch (error) {
+        console.error('[updateDesign]', error);
         res.status(500).json({ message: error.message });
     }
 };
@@ -98,6 +104,7 @@ exports.deleteDesign = async (req, res) => {
         await Design.findByIdAndDelete(req.params.id);
         res.json({ message: 'Design deleted' });
     } catch (error) {
+        console.error('[deleteDesign]', error);
         res.status(500).json({ message: error.message });
     }
 };
