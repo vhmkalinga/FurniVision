@@ -3,8 +3,25 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
-import { Eye, EyeOff, ArrowRight, Sun, Moon } from 'lucide-react';
+import { ArrowRight, Sun, Moon } from 'lucide-react';
 import toast from 'react-hot-toast';
+
+// Defined OUTSIDE the component so React never sees it as a new type on re-render
+function InputField({ label, showToggle, onToggleShow, showPass, ...props }) {
+    return (
+        <div style={{ marginBottom: '1.75rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                <label style={{ fontSize: '0.7rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--text-secondary)' }}>{label}</label>
+                {showToggle && (
+                    <button type="button" onClick={onToggleShow} style={{ fontSize: '0.7rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent)', background: 'none', border: 'none', cursor: 'pointer' }}>
+                        {showPass ? 'Hide' : 'Show'}
+                    </button>
+                )}
+            </div>
+            <input {...props} style={{ width: '100%', padding: '1.125rem 1.5rem', borderRadius: '1rem', backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-color)', fontSize: '0.95rem', color: 'var(--text-primary)', outline: 'none', transition: 'border-color 0.3s', boxSizing: 'border-box' }} onFocus={e => e.target.style.borderColor = 'var(--accent)'} onBlur={e => e.target.style.borderColor = 'var(--border-color)'} />
+        </div>
+    );
+}
 
 export default function Login() {
     const { login } = useAuth();
@@ -41,24 +58,11 @@ export default function Login() {
         } finally { setLoading(false); }
     };
 
-    const InputField = ({ label, showToggle, ...props }) => (
-        <div style={{ marginBottom: '1.75rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                <label style={{ fontSize: '0.7rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--text-secondary)' }}>{label}</label>
-                {showToggle && (
-                    <button type="button" onClick={() => setShowPass(!showPass)} style={{ fontSize: '0.7rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent)', background: 'none', border: 'none', cursor: 'pointer' }}>
-                        {showPass ? 'Hide' : 'Show'}
-                    </button>
-                )}
-            </div>
-            <input {...props} style={{ width: '100%', padding: '1.125rem 1.5rem', borderRadius: '1rem', backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-color)', fontSize: '0.95rem', color: 'var(--text-primary)', outline: 'none', transition: 'border-color 0.3s', boxSizing: 'border-box' }} onFocus={e => e.target.style.borderColor = 'var(--accent)'} onBlur={e => e.target.style.borderColor = 'var(--border-color)'} />
-        </div>
-    );
 
     return (
         <div style={{ minHeight: '100vh', display: 'flex', backgroundColor: 'var(--bg-primary)', fontFamily: 'system-ui, sans-serif' }}>
             {/* Left Panel — Hero Image */}
-            <div style={{ display: 'none', width: '50%', position: 'relative', overflow: 'hidden' }} className="lg:!flex">
+            <div style={{ display: 'none', width: '50%', position: 'relative', overflow: 'hidden' }} className="lg:flex!">
                 <motion.img
                     initial={{ scale: 1.1, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -104,7 +108,7 @@ export default function Login() {
 
                         <form onSubmit={handleSubmit}>
                             <InputField label="Email Address" type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="design@furnivision.com" />
-                            <InputField label="Password" type={showPass ? 'text' : 'password'} required value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} placeholder="Enter your password" showToggle />
+                            <InputField label="Password" type={showPass ? 'text' : 'password'} required value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} placeholder="Enter your password" showToggle showPass={showPass} onToggleShow={() => setShowPass(!showPass)} />
 
                             <div style={{ marginTop: '0.5rem' }}>
                                 <button

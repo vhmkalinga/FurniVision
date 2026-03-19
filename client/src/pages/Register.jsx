@@ -3,8 +3,25 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
-import { Eye, EyeOff, ArrowRight, Sun, Moon, Check } from 'lucide-react';
+import { ArrowRight, Sun, Moon, Check } from 'lucide-react';
 import toast from 'react-hot-toast';
+
+// Defined OUTSIDE the component so React never sees it as a new type on re-render
+function InputField({ label, showToggle, onToggleShow, showPass, ...props }) {
+    return (
+        <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                <label style={{ fontSize: '0.7rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--text-secondary)' }}>{label}</label>
+                {showToggle && (
+                    <button type="button" onClick={onToggleShow} style={{ fontSize: '0.7rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent)', background: 'none', border: 'none', cursor: 'pointer' }}>
+                        {showPass ? 'Hide' : 'Show'}
+                    </button>
+                )}
+            </div>
+            <input {...props} style={{ width: '100%', padding: '1.125rem 1.5rem', borderRadius: '1rem', backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-color)', fontSize: '0.95rem', color: 'var(--text-primary)', outline: 'none', transition: 'border-color 0.3s', boxSizing: 'border-box' }} onFocus={e => e.target.style.borderColor = 'var(--accent)'} onBlur={e => e.target.style.borderColor = 'var(--border-color)'} />
+        </div>
+    );
+}
 
 export default function Register() {
     const { register } = useAuth();
@@ -28,19 +45,6 @@ export default function Register() {
         } finally { setLoading(false); }
     };
 
-    const InputField = ({ label, showToggle, ...props }) => (
-        <div style={{ marginBottom: '1.5rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                <label style={{ fontSize: '0.7rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--text-secondary)' }}>{label}</label>
-                {showToggle && (
-                    <button type="button" onClick={() => setShowPass(!showPass)} style={{ fontSize: '0.7rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent)', background: 'none', border: 'none', cursor: 'pointer' }}>
-                        {showPass ? 'Hide' : 'Show'}
-                    </button>
-                )}
-            </div>
-            <input {...props} style={{ width: '100%', padding: '1.125rem 1.5rem', borderRadius: '1rem', backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-color)', fontSize: '0.95rem', color: 'var(--text-primary)', outline: 'none', transition: 'border-color 0.3s', boxSizing: 'border-box' }} onFocus={e => e.target.style.borderColor = 'var(--accent)'} onBlur={e => e.target.style.borderColor = 'var(--border-color)'} />
-        </div>
-    );
 
     const passwordStrength = form.password.length >= 6;
     const passwordsMatch = form.password && form.confirmPassword && form.password === form.confirmPassword;
@@ -95,7 +99,7 @@ export default function Register() {
                         <form onSubmit={handleSubmit}>
                             <InputField label="Full Name" type="text" required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="John Doe" />
                             <InputField label="Email Address" type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="hello@example.com" />
-                            <InputField label="Password" type={showPass ? 'text' : 'password'} required value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} placeholder="Min. 6 characters" showToggle />
+                            <InputField label="Password" type={showPass ? 'text' : 'password'} required value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} placeholder="Min. 6 characters" showToggle showPass={showPass} onToggleShow={() => setShowPass(!showPass)} />
                             <InputField label="Confirm Password" type="password" required value={form.confirmPassword} onChange={e => setForm({ ...form, confirmPassword: e.target.value })} placeholder="Re-enter your password" />
 
                             {/* Password checks */}
