@@ -19,7 +19,7 @@ export default function Cart() {
     /* ── Empty state ── */
     if (items.length === 0) {
         return (
-            <div className="min-h-[85vh] flex flex-col items-center justify-center bg-[var(--bg-primary)] px-6 py-32">
+            <div className="min-h-[85vh] flex flex-col items-center justify-center bg-(--bg-primary) px-6 py-32">
                 <div className="flex flex-col items-center gap-12 text-center max-w-2xl mx-auto">
                     <div
                         className="w-40 h-40 rounded-full flex items-center justify-center mb-6 shadow-sm"
@@ -39,7 +39,7 @@ export default function Cart() {
 
                     <Link
                         to="/shop"
-                        className="group mt-8 inline-flex items-center gap-4 px-12 py-5 rounded-full text-[15px] font-bold uppercase tracking-[0.2em] transition-all duration-300 text-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)]"
+                        className="group mt-8 inline-flex items-center gap-4 px-12 py-5 rounded-full text-[15px] font-bold uppercase tracking-[0.2em] transition-all duration-300 text-(--text-primary) hover:bg-(--text-primary) hover:text-(--bg-primary)"
                         style={{ border: '1px solid var(--border-color)' }}
                     >
                         Start Browsing
@@ -94,12 +94,12 @@ export default function Cart() {
                             return (
                                 <div
                                     key={item._id}
-                                    className="group flex flex-col sm:flex-row gap-8 sm:gap-12 py-10 transition-all border-b border-[var(--border-color)] last:border-0"
+                                    className="group flex flex-col sm:flex-row gap-8 sm:gap-12 py-10 transition-all border-b border-(--border-color) last:border-0"
                                     style={{ animationDelay: `${index * 60}ms` }}
                                 >
                                     {/* Thumbnail */}
                                     <div
-                                        className="w-full sm:w-48 h-48 rounded-[1.5rem] overflow-hidden flex-shrink-0 flex items-center justify-center relative bg-[var(--bg-primary)] shadow-sm"
+                                        className="w-full sm:w-48 h-48 rounded-3xl overflow-hidden shrink-0 flex items-center justify-center relative bg-(--bg-primary) shadow-sm"
                                     >
                                         {imgSrc
                                             ? <img src={imgSrc} alt={item.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -129,7 +129,7 @@ export default function Cart() {
 
                                         <div className="flex flex-col sm:flex-row sm:items-end justify-between mt-auto pt-6 gap-6">
                                             <div className="flex flex-col gap-1.5">
-                                                <p className="text-sm font-semibold text-[var(--text-muted)]">
+                                                <p className="text-sm font-semibold text-(--text-muted)">
                                                     ${item.price.toFixed(2)} each
                                                 </p>
                                                 <p className="text-3xl font-black tracking-tight" style={{ color: 'var(--text-primary)' }}>
@@ -141,7 +141,7 @@ export default function Cart() {
                                             <div className="flex items-center gap-4">
                                                 <button
                                                     onClick={() => { removeItem(item._id); toast.success('Removed'); }}
-                                                    className="w-12 h-12 rounded-[1rem] transition-all flex items-center justify-center shadow-sm shrink-0"
+                                                    className="w-12 h-12 rounded-2xl transition-all flex items-center justify-center shadow-sm shrink-0"
                                                     style={{ color: 'var(--text-muted)', background: 'var(--bg-primary)' }}
                                                     onMouseEnter={e => { e.currentTarget.style.color = '#ef4444'; e.currentTarget.style.background = 'var(--bg-card)'; }}
                                                     onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-muted)'; e.currentTarget.style.background = 'var(--bg-primary)'; }}
@@ -151,7 +151,7 @@ export default function Cart() {
 
                                                 {/* Qty stepper */}
                                                 <div
-                                                    className="flex items-center rounded-full overflow-hidden shadow-sm shrink-0 h-10 border border-[var(--border-color)]"
+                                                    className="flex items-center rounded-full overflow-hidden shadow-sm shrink-0 h-10 border border-(--border-color)"
                                                     style={{ background: 'var(--bg-card)' }}
                                                 >
                                                     <button

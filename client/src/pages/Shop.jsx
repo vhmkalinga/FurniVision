@@ -65,7 +65,7 @@ export default function Shop() {
     return (
         <div className="w-full pb-32 lg:pb-48">
             {/* Immersive Hero Header */}
-            <div className="relative w-full h-[400px] sm:h-[450px] lg:h-[500px] mb-16 flex items-center justify-center overflow-hidden" style={{ marginTop: '-90px', paddingTop: '90px' }}>
+            <div className="relative w-full h-100 sm:h-112.5 lg:h-125 mb-16 flex items-center justify-center overflow-hidden" style={{ marginTop: '-90px', paddingTop: '90px' }}>
                 <div 
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=2560")' }}
@@ -95,8 +95,8 @@ export default function Shop() {
                             <button
                                 onClick={() => updateFilter('category', '')}
                                 className={`relative pb-1.5 text-[13px] font-semibold transition-all duration-200 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:rounded-full after:transition-all after:duration-300 ${!category
-                                    ? 'text-[var(--text-primary)] after:w-full after:bg-[var(--text-primary)]'
-                                    : 'text-[var(--text-muted)] hover:text-[var(--text-primary)] after:w-0 hover:after:w-full after:bg-[var(--text-primary)]'}`}
+                                    ? 'text-(--text-primary) after:w-full after:bg-[var(--text-primary)]'
+                                    : 'text-(--text-muted) hover:text-(--text-primary) after:w-0 hover:after:w-full after:bg-[var(--text-primary)]'}`}
                             >
                                 All
                             </button>
@@ -105,8 +105,8 @@ export default function Shop() {
                                     key={c._id}
                                     onClick={() => updateFilter('category', c._id)}
                                     className={`relative pb-1.5 text-[13px] font-semibold transition-all duration-200 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:rounded-full after:transition-all after:duration-300 ${category === c._id
-                                        ? 'text-[var(--text-primary)] after:w-full after:bg-[var(--text-primary)]'
-                                        : 'text-[var(--text-muted)] hover:text-[var(--text-primary)] after:w-0 hover:after:w-full after:bg-[var(--text-primary)]'}`}
+                                        ? 'text-(--text-primary) after:w-full after:bg-[var(--text-primary)]'
+                                        : 'text-(--text-muted) hover:text-(--text-primary) after:w-0 hover:after:w-full after:bg-[var(--text-primary)]'}`}
                                 >
                                     {c.name}
                                 </button>

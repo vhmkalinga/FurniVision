@@ -92,10 +92,10 @@ export default function Home() {
                             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
                             className="flex flex-col sm:flex-row gap-5 mt-6"
                         >
-                            <Link to="/designer" className="inline-flex items-center justify-center gap-4 w-full sm:w-[300px] h-[76px] bg-white text-black font-semibold tracking-widest hover:bg-gray-100 active:scale-95 transition-all shadow-[0_8px_30px_rgba(255,255,255,0.15)] text-[15px] uppercase rounded-sm">
+                            <Link to="/designer" className="inline-flex items-center justify-center gap-4 w-full sm:w-75 h-19 bg-white text-black font-semibold tracking-widest hover:bg-gray-100 active:scale-95 transition-all shadow-[0_8px_30px_rgba(255,255,255,0.15)] text-[15px] uppercase rounded-sm">
                                 Start Room Designer <ArrowRight className="w-5 h-5 ml-2" />
                             </Link>
-                            <Link to="/shop" className="inline-flex items-center justify-center gap-4 w-full sm:w-[300px] h-[76px] bg-black/20 hover:bg-black/40 backdrop-blur-lg border border-white/50 text-white font-semibold tracking-widest active:scale-95 transition-all text-[15px] uppercase rounded-sm">
+                            <Link to="/shop" className="inline-flex items-center justify-center gap-4 w-full sm:w-75 h-19 bg-black/20 hover:bg-black/40 backdrop-blur-lg border border-white/50 text-white font-semibold tracking-widest active:scale-95 transition-all text-[15px] uppercase rounded-sm">
                                 Browse Furniture
                             </Link>
                         </motion.div>
@@ -151,7 +151,7 @@ export default function Home() {
                             </div>
                         </Reveal>
                         <Reveal delay={0.1}>
-                            <Link to="/shop" className="group inline-flex items-center gap-2 text-[14px] font-semibold hover:text-[var(--accent)] transition-colors" style={{ color: 'var(--text-secondary)' }}>
+                            <Link to="/shop" className="group inline-flex items-center gap-2 text-[14px] font-semibold hover:text-(--accent) transition-colors" style={{ color: 'var(--text-secondary)' }}>
                                 View All <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                             </Link>
                         </Reveal>
@@ -187,7 +187,7 @@ export default function Home() {
                             <p className="text-lg text-white/80 mb-10 leading-relaxed">
                                 Place furniture, experiment with layouts, and visualize your dream space before you buy.
                             </p>
-                            <Link to="/designer" className="inline-flex items-center justify-center gap-3 w-[280px] h-[64px] bg-white text-black font-semibold tracking-widest text-[14px] uppercase rounded-sm hover:bg-gray-100 active:scale-95 transition-all">
+                            <Link to="/designer" className="inline-flex items-center justify-center gap-3 w-70 h-16 bg-white text-black font-semibold tracking-widest text-[14px] uppercase rounded-sm hover:bg-gray-100 active:scale-95 transition-all">
                                 Open Room Designer <ArrowRight className="w-5 h-5" />
                             </Link>
                         </div>
@@ -251,7 +251,7 @@ export default function Home() {
                             </div>
                         </Reveal>
                         <Reveal delay={0.1}>
-                            <Link to="/blog" className="group inline-flex items-center gap-2 text-[14px] font-semibold hover:text-[var(--accent)] transition-colors" style={{ color: 'var(--text-secondary)' }}>
+                            <Link to="/blog" className="group inline-flex items-center gap-2 text-[14px] font-semibold hover:text-(--accent) transition-colors" style={{ color: 'var(--text-secondary)' }}>
                                 View All Articles <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                             </Link>
                         </Reveal>
@@ -261,7 +261,7 @@ export default function Home() {
                         {displayBlogs.map((blog, i) => (
                             <Reveal key={blog._id} delay={i * 0.1}>
                                 <motion.div whileHover={{ y: -6 }} className="group flex flex-col h-full cursor-pointer">
-                                    <div className="aspect-[4/3] rounded-2xl overflow-hidden mb-6 relative">
+                                    <div className="aspect-4/3 rounded-2xl overflow-hidden mb-6 relative">
                                         <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10" />
                                         <img 
                                             src={blog.coverImage || blog.image || BLOG_IMAGES[i % BLOG_IMAGES.length]}
@@ -275,13 +275,13 @@ export default function Home() {
                                             <span className="w-1 h-1 rounded-full bg-current opacity-30" />
                                             <span>{new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                                         </div>
-                                        <h3 className="text-xl font-bold mb-3 group-hover:text-[var(--accent)] transition-colors leading-snug" style={{ color: 'var(--text-primary)' }}>
+                                        <h3 className="text-xl font-bold mb-3 group-hover:text-(--accent) transition-colors leading-snug" style={{ color: 'var(--text-primary)' }}>
                                             {blog.title}
                                         </h3>
                                         <p className="text-[15px] leading-relaxed mb-6 flex-1 line-clamp-2 font-light" style={{ color: 'var(--text-secondary)' }}>
                                             {blog.excerpt}
                                         </p>
-                                        <div className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-widest mt-auto group-hover:text-[var(--accent)] transition-colors" style={{ color: 'var(--text-primary)' }}>
+                                        <div className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-widest mt-auto group-hover:text-(--accent) transition-colors" style={{ color: 'var(--text-primary)' }}>
                                             Read Article <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                                         </div>
                                     </div>

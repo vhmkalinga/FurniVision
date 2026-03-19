@@ -12,7 +12,7 @@ function Field({ label, name, type = 'text', placeholder, value, onChange, requi
     return (
         <div className="flex flex-col gap-2">
             <span className="text-[10px] font-bold uppercase tracking-[0.25em]" style={{ color: 'var(--text-muted)' }}>{label}</span>
-            <div className="border-b pb-2 transition-colors duration-300 focus-within:border-[var(--text-primary)]" style={{ borderColor: 'var(--border-color)' }}>
+            <div className="border-b pb-2 transition-colors duration-300 focus-within:border-(--text-primary)" style={{ borderColor: 'var(--border-color)' }}>
                 {children ?? (
                     <input type={type} name={name} placeholder={placeholder} value={value} onChange={onChange} required={required}
                         className="w-full bg-transparent border-none p-0 text-[15px] focus:outline-none focus:ring-0 placeholder:opacity-30"
@@ -29,7 +29,7 @@ function DoneStep({ num, title, summary, onEdit }) {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             className="flex items-start justify-between py-5 border-b" style={{ borderColor: 'var(--border-color)' }}>
             <div className="flex items-start gap-5">
-                <span className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                <span className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5"
                     style={{ background: 'var(--accent)' }}>
                     <Check className="w-3.5 h-3.5 text-white" />
                 </span>

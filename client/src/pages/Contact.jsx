@@ -37,7 +37,7 @@ export default function Contact() {
                     <Reveal delay={0.1}>
                         <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
                             Let's Talk<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Design</span>
+                            <span className="text-transparent bg-clip-text bg-linear-to-r from-white via-white to-white/40">Design</span>
                         </h1>
                         <p className="text-lg md:text-xl text-white/70 font-light tracking-[0.2em] uppercase">Connect with our team of experts</p>
                     </Reveal>
@@ -48,15 +48,15 @@ export default function Contact() {
             <div className="h-12 lg:h-16" />
 
             {/* Contact Content Section */}
-            <section className="py-20 lg:py-28 bg-[var(--bg-primary)]">
+            <section className="py-20 lg:py-28 bg-(--bg-primary)">
                 <div className="container-centered">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 lg:gap-32">
                         
                         {/* Column 1: Contact Details */}
                         <div className="lg:col-span-5">
                             <Reveal>
-                                <span className="text-[var(--accent)] text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Stay connected</span>
-                                <h2 className="text-5xl md:text-6xl font-bold mb-12 tracking-tight text-[var(--text-primary)]">Reach Out</h2>
+                                <span className="text-(--accent) text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Stay connected</span>
+                                <h2 className="text-5xl md:text-6xl font-bold mb-12 tracking-tight text-(--text-primary)">Reach Out</h2>
                                 
                                 <div className="space-y-16">
                                     {[
@@ -66,14 +66,14 @@ export default function Contact() {
                                         { icon: Clock, title: 'Studio Hours', info: 'Mon — Fri, 9am - 6pm', sub: 'Closed on Sundays' }
                                     ].map((c, i) => (
                                         <div key={i} className="group flex flex-col items-start max-w-xs">
-                                            <div className="w-10 h-[1px] bg-[var(--accent)] mb-8 transition-all duration-700 group-hover:w-20"></div>
+                                            <div className="w-10 h-px bg-(--accent) mb-8 transition-all duration-700 group-hover:w-20"></div>
                                             <div className="flex items-center gap-6">
-                                                <div className="p-3 rounded-full border border-[var(--border-color)] group-hover:border-[var(--accent)] group-hover:bg-[var(--accent)]/5 transition-all duration-500">
-                                                    <c.icon className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--accent)]" />
+                                                <div className="p-3 rounded-full border border-(--border-color) group-hover:border-(--accent) group-hover:bg-(--accent)/5 transition-all duration-500">
+                                                    <c.icon className="w-4 h-4 text-(--text-muted) group-hover:text-(--accent)" />
                                                 </div>
                                                 <div>
-                                                    <p className="text-[15px] font-bold text-[var(--text-primary)] mb-1">{c.info}</p>
-                                                    <p className="text-[12px] text-[var(--text-muted)] font-medium uppercase tracking-wider">{c.sub}</p>
+                                                    <p className="text-[15px] font-bold text-(--text-primary) mb-1">{c.info}</p>
+                                                    <p className="text-[12px] text-(--text-muted) font-medium uppercase tracking-wider">{c.sub}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -87,67 +87,67 @@ export default function Contact() {
                             <Reveal delay={0.2}>
                                 <div className="relative">
                                     {/* Large Background Blur Accent */}
-                                    <div className="absolute -top-20 -right-20 w-64 h-64 bg-[var(--accent)]/5 rounded-full blur-[100px] -z-10"></div>
+                                    <div className="absolute -top-20 -right-20 w-64 h-64 bg-(--accent)/5 rounded-full blur-[100px] -z-10"></div>
                                     
                                     <form onSubmit={handleSubmit} className="space-y-12">
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
-                                            <div className="border-b border-[var(--border-color)] pb-4 focus-within:border-[var(--accent)] transition-colors duration-500">
-                                                <label className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-3 block">Your Name</label>
+                                            <div className="border-b border-(--border-color) pb-4 focus-within:border-(--accent) transition-colors duration-500">
+                                                <label className="text-[11px] font-bold uppercase tracking-[0.2em] text-(--text-secondary) mb-3 block">Your Name</label>
                                                 <input 
                                                     type="text" 
                                                     required 
                                                     value={form.name} 
                                                     onChange={e => setForm({ ...form, name: e.target.value })} 
-                                                    className="w-full bg-transparent border-none p-0 text-[var(--text-primary)] text-lg font-light focus:outline-none focus:ring-0 placeholder:text-[var(--text-muted)]/40" 
+                                                    className="w-full bg-transparent border-none p-0 text-(--text-primary) text-lg font-light focus:outline-none focus:ring-0 placeholder:text-(--text-muted)/40" 
                                                     placeholder="John Doe" 
                                                 />
                                             </div>
-                                            <div className="border-b border-[var(--border-color)] pb-4 focus-within:border-[var(--accent)] transition-colors duration-500">
-                                                <label className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-3 block">Email Address</label>
+                                            <div className="border-b border-(--border-color) pb-4 focus-within:border-(--accent) transition-colors duration-500">
+                                                <label className="text-[11px] font-bold uppercase tracking-[0.2em] text-(--text-secondary) mb-3 block">Email Address</label>
                                                 <input 
                                                     type="email" 
                                                     required 
                                                     value={form.email} 
                                                     onChange={e => setForm({ ...form, email: e.target.value })} 
-                                                    className="w-full bg-transparent border-none p-0 text-[var(--text-primary)] text-lg font-light focus:outline-none focus:ring-0 placeholder:text-[var(--text-muted)]/40" 
+                                                    className="w-full bg-transparent border-none p-0 text-(--text-primary) text-lg font-light focus:outline-none focus:ring-0 placeholder:text-(--text-muted)/40" 
                                                     placeholder="john@example.com" 
                                                 />
                                             </div>
                                         </div>
                                         
-                                        <div className="border-b border-[var(--border-color)] pb-4 focus-within:border-[var(--accent)] transition-colors duration-500">
-                                            <label className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-3 block">Subject</label>
+                                        <div className="border-b border-(--border-color) pb-4 focus-within:border-(--accent) transition-colors duration-500">
+                                            <label className="text-[11px] font-bold uppercase tracking-[0.2em] text-(--text-secondary) mb-3 block">Subject</label>
                                             <input 
                                                 type="text" 
                                                 required 
                                                 value={form.subject} 
                                                 onChange={e => setForm({ ...form, subject: e.target.value })} 
-                                                className="w-full bg-transparent border-none p-0 text-[var(--text-primary)] text-lg font-light focus:outline-none focus:ring-0 placeholder:text-[var(--text-muted)]/40" 
+                                                className="w-full bg-transparent border-none p-0 text-(--text-primary) text-lg font-light focus:outline-none focus:ring-0 placeholder:text-(--text-muted)/40" 
                                                 placeholder="Inquiry about custom furniture" 
                                             />
                                         </div>
 
-                                        <div className="border-b border-[var(--border-color)] pb-4 focus-within:border-[var(--accent)] transition-colors duration-500">
-                                            <label className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-3 block">Message</label>
+                                        <div className="border-b border-(--border-color) pb-4 focus-within:border-(--accent) transition-colors duration-500">
+                                            <label className="text-[11px] font-bold uppercase tracking-[0.2em] text-(--text-secondary) mb-3 block">Message</label>
                                             <textarea 
                                                 required 
                                                 value={form.message} 
                                                 onChange={e => setForm({ ...form, message: e.target.value })} 
                                                 rows={5} 
-                                                className="w-full bg-transparent border-none p-0 text-[var(--text-primary)] text-lg font-light focus:outline-none focus:ring-0 placeholder:text-[var(--text-muted)]/40 resize-none" 
+                                                className="w-full bg-transparent border-none p-0 text-(--text-primary) text-lg font-light focus:outline-none focus:ring-0 placeholder:text-(--text-muted)/40 resize-none" 
                                                 placeholder="Tell us about your project..." 
                                             />
                                         </div>
 
                                         <button 
                                             type="submit" 
-                                            className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-6 border border-[var(--text-primary)] px-16 py-6 rounded-full font-bold text-[10px] tracking-[0.5em] uppercase overflow-hidden transition-all duration-700 hover:border-[var(--accent)]"
+                                            className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-6 border border-(--text-primary) px-16 py-6 rounded-full font-bold text-[10px] tracking-[0.5em] uppercase overflow-hidden transition-all duration-700 hover:border-(--accent)"
                                         >
-                                            <span className="relative z-10 text-[var(--text-primary)] group-hover:text-white transition-colors duration-500">Send Message</span>
-                                            <ArrowRight className="w-4 h-4 relative z-10 text-[var(--accent)] group-hover:text-white transition-all duration-500 group-hover:translate-x-3" />
+                                            <span className="relative z-10 text-(--text-primary) group-hover:text-white transition-colors duration-500">Send Message</span>
+                                            <ArrowRight className="w-4 h-4 relative z-10 text-(--accent) group-hover:text-white transition-all duration-500 group-hover:translate-x-3" />
                                             
                                             {/* Fill Background Animation */}
-                                            <div className="absolute inset-0 bg-[var(--accent)] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-700 ease-out"></div>
+                                            <div className="absolute inset-0 bg-(--accent) -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-700 ease-out"></div>
                                         </button>
                                     </form>
                                 </div>

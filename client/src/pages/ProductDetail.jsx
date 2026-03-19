@@ -81,10 +81,10 @@ export default function ProductDetail() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-[var(--bg-primary)]">
+            <div className="min-h-screen flex items-center justify-center bg-(--bg-primary)">
                 <div className="flex flex-col items-center gap-4">
-                    <div className="w-10 h-10 border-2 border-[var(--border-color)] border-t-[var(--text-primary)] rounded-full animate-spin" />
-                    <p className="text-sm text-[var(--text-muted)] tracking-widest uppercase">Loading…</p>
+                    <div className="w-10 h-10 border-2 border-(--border-color) border-t-(--text-primary) rounded-full animate-spin" />
+                    <p className="text-sm text-(--text-muted) tracking-widest uppercase">Loading…</p>
                 </div>
             </div>
         );
@@ -92,8 +92,8 @@ export default function ProductDetail() {
 
     if (!product) {
         return (
-            <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--bg-primary)] text-center px-6">
-                <p className="text-2xl font-bold text-[var(--text-primary)] mb-4">Product not found</p>
+            <div className="min-h-screen flex flex-col items-center justify-center bg-(--bg-primary) text-center px-6">
+                <p className="text-2xl font-bold text-(--text-primary) mb-4">Product not found</p>
                 <Link to="/shop" className="btn-primary px-8 py-3 rounded-xl text-sm font-semibold">Back to Shop</Link>
             </div>
         );
@@ -106,12 +106,12 @@ export default function ProductDetail() {
     const rating = product.rating || 5;
 
     return (
-        <div className="min-h-screen bg-[var(--bg-primary)]">
+        <div className="min-h-screen bg-(--bg-primary)">
             {/* Top nav */}
             <div className="container-centered pt-32 pb-4">
                 <Link
                     to="/shop"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-(--text-muted) hover:text-(--text-primary) transition-colors"
                 >
                     <ArrowLeft className="w-4 h-4" />
                     Back to Shop
@@ -125,7 +125,7 @@ export default function ProductDetail() {
                     {/* ── LEFT: image / 3D viewer ── */}
                     <div className="flex flex-col gap-4">
                         {/* Media frame */}
-                        <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-[var(--bg-secondary)]">
+                        <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-(--bg-secondary)">
                             {viewMode === 'image' ? (
                                 <img
                                     src={imageUrl}
@@ -165,16 +165,16 @@ export default function ProductDetail() {
 
                         {/* View toggle row */}
                         {has3DModel && (
-                            <div className="flex items-center gap-1 p-1 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] w-fit">
+                            <div className="flex items-center gap-1 p-1 rounded-xl bg-(--bg-secondary) border border-(--border-color) w-fit">
                                 <button
                                     onClick={() => setViewMode('image')}
-                                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-semibold transition-all ${viewMode === 'image' ? 'bg-[var(--bg-primary)] text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'}`}
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-semibold transition-all ${viewMode === 'image' ? 'bg-(--bg-primary) text-(--text-primary) shadow-sm' : 'text-(--text-muted) hover:text-(--text-primary)'}`}
                                 >
                                     <ImageIcon className="w-3.5 h-3.5" /> Photo
                                 </button>
                                 <button
                                     onClick={() => setViewMode('3d')}
-                                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-semibold transition-all ${viewMode === '3d' ? 'bg-[var(--bg-primary)] text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'}`}
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-semibold transition-all ${viewMode === '3d' ? 'bg-(--bg-primary) text-(--text-primary) shadow-sm' : 'text-(--text-muted) hover:text-(--text-primary)'}`}
                                 >
                                     <Cuboid className="w-3.5 h-3.5" /> 3D View
                                 </button>
@@ -185,12 +185,12 @@ export default function ProductDetail() {
                     {/* ── RIGHT: details ── */}
                     <div className="flex flex-col gap-6 pt-2">
                         {/* Category badge */}
-                        <span className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--accent)]">
+                        <span className="text-xs font-bold tracking-[0.2em] uppercase text-(--accent)">
                             {product.category?.name || 'Furniture'}
                         </span>
 
                         {/* Name */}
-                        <h1 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] leading-tight">
+                        <h1 className="text-3xl md:text-4xl font-bold text-(--text-primary) leading-tight">
                             {product.name}
                         </h1>
 
@@ -206,29 +206,29 @@ export default function ProductDetail() {
                                     />
                                 ))}
                             </div>
-                            <span className="text-sm text-[var(--text-muted)]">
+                            <span className="text-sm text-(--text-muted)">
                                 {product.reviewCount > 0 ? `${product.reviewCount} reviews` : 'No reviews yet'}
                             </span>
                         </div>
 
                         {/* Price */}
-                        <p className="text-3xl font-extrabold text-[var(--text-primary)]">
+                        <p className="text-3xl font-extrabold text-(--text-primary)">
                             ${product.price?.toLocaleString()}
                         </p>
 
                         {/* Divider */}
-                        <hr className="border-[var(--border-color)]" />
+                        <hr className="border-(--border-color)" />
 
                         {/* Description */}
-                        <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">
+                        <p className="text-[15px] text-(--text-secondary) leading-relaxed">
                             {product.description}
                         </p>
 
                         {/* Color selector */}
                         {product.colors?.length > 0 && (
                             <div className="flex flex-col gap-3">
-                                <p className="text-sm font-semibold text-[var(--text-primary)]">
-                                    Color: <span className="text-[var(--text-muted)] font-normal">{product.colors[selectedColor]?.name}</span>
+                                <p className="text-sm font-semibold text-(--text-primary)">
+                                    Color: <span className="text-(--text-muted) font-normal">{product.colors[selectedColor]?.name}</span>
                                 </p>
                                 <div className="flex flex-wrap gap-3">
                                     {product.colors.map((c, i) => (
@@ -255,15 +255,15 @@ export default function ProductDetail() {
 
                         {/* Dimensions */}
                         {product.dimensions && (
-                            <div className="grid grid-cols-3 gap-4 p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)]">
+                            <div className="grid grid-cols-3 gap-4 p-4 rounded-xl bg-(--bg-secondary) border border-(--border-color)">
                                 {[
                                     { label: 'Width', val: product.dimensions.width },
                                     { label: 'Height', val: product.dimensions.height },
                                     { label: 'Depth', val: product.dimensions.depth },
                                 ].map(d => (
                                     <div key={d.label} className="text-center">
-                                        <p className="text-[11px] text-[var(--text-muted)] uppercase tracking-wider mb-1">{d.label}</p>
-                                        <p className="text-base font-bold text-[var(--text-primary)]">{d.val}m</p>
+                                        <p className="text-[11px] text-(--text-muted) uppercase tracking-wider mb-1">{d.label}</p>
+                                        <p className="text-base font-bold text-(--text-primary)">{d.val}m</p>
                                     </div>
                                 ))}
                             </div>
@@ -272,19 +272,19 @@ export default function ProductDetail() {
                         {/* Quantity + Add to Cart */}
                         <div className="flex items-center gap-3 mt-2">
                             {/* Qty */}
-                            <div className="flex items-center border border-[var(--border-color)] rounded-xl overflow-hidden">
+                            <div className="flex items-center border border-(--border-color) rounded-xl overflow-hidden">
                                 <button
                                     onClick={() => setQty(q => Math.max(1, q - 1))}
-                                    className="w-11 h-12 flex items-center justify-center text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors"
+                                    className="w-11 h-12 flex items-center justify-center text-(--text-primary) hover:bg-(--bg-secondary) transition-colors"
                                 >
                                     <Minus className="w-4 h-4" />
                                 </button>
-                                <span className="w-10 h-12 flex items-center justify-center text-[15px] font-bold text-[var(--text-primary)] border-x border-[var(--border-color)] select-none">
+                                <span className="w-10 h-12 flex items-center justify-center text-[15px] font-bold text-(--text-primary) border-x border-(--border-color) select-none">
                                     {qty}
                                 </span>
                                 <button
                                     onClick={() => setQty(q => q + 1)}
-                                    className="w-11 h-12 flex items-center justify-center text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors"
+                                    className="w-11 h-12 flex items-center justify-center text-(--text-primary) hover:bg-(--bg-secondary) transition-colors"
                                 >
                                     <Plus className="w-4 h-4" />
                                 </button>
@@ -297,7 +297,7 @@ export default function ProductDetail() {
                                     toast.success(`${product.name} added to cart!`);
                                 }}
                                 disabled={!product.inStock}
-                                className="flex-1 h-12 flex items-center justify-center gap-2 rounded-xl bg-[var(--text-primary)] text-[var(--bg-primary)] text-sm font-bold uppercase tracking-wider hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-40 disabled:pointer-events-none"
+                                className="flex-1 h-12 flex items-center justify-center gap-2 rounded-xl bg-(--text-primary) text-(--bg-primary) text-sm font-bold uppercase tracking-wider hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-40 disabled:pointer-events-none"
                             >
                                 <ShoppingBag className="w-4 h-4" />
                                 {product.inStock ? 'Add to Cart' : 'Out of Stock'}
@@ -312,11 +312,11 @@ export default function ProductDetail() {
                                 { icon: RotateCcw, label: '30-Day Returns', sub: 'Hassle free' },
                             ].map(b => (
                                 <div key={b.label} className="flex flex-col items-center text-center gap-2">
-                                    <div className="w-9 h-9 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center">
-                                        <b.icon className="w-4 h-4 text-[var(--accent)]" />
+                                    <div className="w-9 h-9 rounded-full bg-(--bg-secondary) flex items-center justify-center">
+                                        <b.icon className="w-4 h-4 text-(--accent)" />
                                     </div>
-                                    <p className="text-[12px] font-semibold text-[var(--text-primary)] leading-tight">{b.label}</p>
-                                    <p className="text-[11px] text-[var(--text-muted)]">{b.sub}</p>
+                                    <p className="text-[12px] font-semibold text-(--text-primary) leading-tight">{b.label}</p>
+                                    <p className="text-[11px] text-(--text-muted)">{b.sub}</p>
                                 </div>
                             ))}
                         </div>
