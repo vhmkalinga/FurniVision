@@ -420,13 +420,34 @@ function Room({ config, onHiddenWall }) {
 export default function Viewer3D({ roomConfig, furniture, selectedFurniture, onSelectFurniture, onUpdateFurniture }) {
     const [activeDragItem, setActiveDragItem] = useState(null);
     const [hiddenWall, setHiddenWall] = useState(null);
+    const [contextLost, setContextLost] = useState(false);
 
     return (
-        <div style={{ width: '100%', height: '100%' }}>
+        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+            {contextLost && (
+                <div style={{
+                    position: 'absolute', inset: 0, zIndex: 10,
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                    backgroundColor: 'rgba(0,0,0,0.7)', color: '#fff', gap: '1rem'
+                }}>
+                    <span style={{ fontSize: '2rem' }}>⚠️</span>
+                    <p style={{ margin: 0, fontWeight: 700 }}>3D View Lost</p>
+                    <p style={{ margin: 0, fontSize: '0.875rem', opacity: 0.7 }}>Recovering GPU context…</p>
+                </div>
+            )}
             <Canvas
                 shadows={{ type: THREE.PCFShadowMap }}
                 camera={{ position: [roomConfig.width * 1.2, roomConfig.height * 1.5, roomConfig.length * 1.5], fov: 50 }}
                 gl={{ antialias: false, powerPreference: 'high-performance' }}
+                onCreated={({ gl }) => {
+                    gl.domElement.addEventListener('webglcontextlost', (e) => {
+                        e.preventDefault();
+                        setContextLost(true);
+                    });
+                    gl.domElement.addEventListener('webglcontextrestored', () => {
+                        setContextLost(false);
+                    });
+                }}
             >
                 <ambientLight intensity={0.4} />
                 <directionalLight
